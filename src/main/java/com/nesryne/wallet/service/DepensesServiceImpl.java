@@ -3,22 +3,40 @@ package com.nesryne.wallet.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.nesryne.wallet.entities.Depenses;
 import com.nesryne.wallet.repository.DepensesRepository;
-
+import com.nesryne.wallet.service.dto.DepensesDto;
+import com.nesryne.wallet.service.mapper.DepensesMapper;
+@Component
 @Service
 public class DepensesServiceImpl implements DepensesService {
     @Autowired
     DepensesRepository DepensesRepository;
-@Override
-public Depenses saveDepenses(Depenses depenses) {
-    return DepensesRepository.save(depenses);}
+    @Autowired
+    DepensesMapper depensesMapper;
+      public DepensesServiceImpl(DepensesMapper depensesMapper,DepensesRepository depensesRepository){
+        this.depensesMapper=depensesMapper;
+        this.DepensesRepository=depensesRepository;
+      }
+
+
+
 
 @Override
-public Depenses updateDepenses(Depenses depenses) {
-    return DepensesRepository.save(depenses);}
+public DepensesDto saveDepenses(DepensesDto depensesDto) {
+    Depenses depenses= depensesMapper.toEntity(depensesDto);
+    depenses=DepensesRepository.save(depenses);
+    return depensesMapper.toDto(depenses);
+    }
+
+@Override
+public DepensesDto updateDepenses(DepensesDto depensesDto) {
+    Depenses depenses= depensesMapper.toEntity(depensesDto);
+    depenses=DepensesRepository.save(depenses);
+    return depensesMapper.toDto(depenses);}
 
 @Override
 public void deleteDepensesById(Long idDepenses) {

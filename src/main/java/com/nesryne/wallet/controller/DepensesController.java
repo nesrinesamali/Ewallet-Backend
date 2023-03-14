@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nesryne.wallet.entities.Depenses;
 import com.nesryne.wallet.service.DepensesService;
+import com.nesryne.wallet.service.dto.DepensesDto;
 @RestController
 public class DepensesController {
 
@@ -22,9 +23,9 @@ public class DepensesController {
 
     @PostMapping("/Depenses")
     @ResponseBody
-    public Depenses saveDepenses( @RequestBody Depenses depenses)
+    public DepensesDto saveDepenses( @RequestBody DepensesDto depensesDto)
     {
-        return depensesService.saveDepenses(depenses);
+        return depensesService.saveDepenses(depensesDto);
     }
     
     @GetMapping("/getDepenses")
@@ -36,10 +37,10 @@ public class DepensesController {
  
     @PutMapping("/updateDepenses")
  
-    public Depenses
-    updateDepenses(@RequestBody Depenses depenses)
+    public DepensesDto
+    updateDepenses(@RequestBody DepensesDto depensesDto)
     {
-        return depensesService.updateDepenses(depenses);
+        return depensesService.updateDepenses(depensesDto);
     }
  
     

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nesryne.wallet.entities.Budget;
 import com.nesryne.wallet.service.BudgetService;
+import com.nesryne.wallet.service.dto.BudgetDto;
 
 
 @RestController
@@ -24,9 +25,9 @@ public class BudgetController {
 
     @PostMapping("/Budgets")
     @ResponseBody
-    public Budget saveBudget( @RequestBody Budget budget)
+    public BudgetDto saveBudget( @RequestBody BudgetDto budgetDto)
     {
-        return budgetService.saveBudget(budget);
+        return budgetService.saveBudget(budgetDto);
     }
     
     @GetMapping("/getBudgets")
@@ -38,10 +39,10 @@ public class BudgetController {
  
     @PutMapping("/updateBudget")
  
-    public Budget
-    updateBudget(@RequestBody Budget budget)
+    public BudgetDto
+    updateBudget(@RequestBody BudgetDto budgetDto)
     {
-        return budgetService.updateBudget(budget);
+        return budgetService.updateBudget(budgetDto);
     }
  
     

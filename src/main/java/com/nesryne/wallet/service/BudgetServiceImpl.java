@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.nesryne.wallet.entities.Budget;
 import com.nesryne.wallet.repository.BudgetRepository;
+import com.nesryne.wallet.service.dto.BudgetDto;
+import com.nesryne.wallet.service.mapper.BudgetMapper;
 
 @Service
 public class BudgetServiceImpl implements BudgetService  {
@@ -14,13 +16,28 @@ public class BudgetServiceImpl implements BudgetService  {
 
 @Autowired
 BudgetRepository BudgetRepository;
-@Override
-public Budget saveBudget(Budget budget) {
-    return BudgetRepository.save(budget);}
+@Autowired
+BudgetMapper budgetMapper;
+
+public BudgetServiceImpl(BudgetMapper budgetMapper,BudgetRepository budgetRepository){
+    this.budgetMapper=budgetMapper;
+    this.BudgetRepository=budgetRepository;
+}
+
+
+
 
 @Override
-public Budget updateBudget(Budget budget) {
-    return BudgetRepository.save(budget);}
+public BudgetDto saveBudget(BudgetDto budgetDto) {
+    Budget budget=budgetMapper.toEntity(budgetDto);
+    budget=BudgetRepository.save(budget);
+    return budgetMapper.toDto(budget);}
+
+@Override
+public BudgetDto updateBudget(BudgetDto budgetDto) {
+    Budget budget=budgetMapper.toEntity(budgetDto);
+    budget=BudgetRepository.save(budget);
+    return budgetMapper.toDto(budget);}
 
 @Override
 public void deleteBudgetById(Long idBudget) {
