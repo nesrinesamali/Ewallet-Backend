@@ -2,26 +2,45 @@ package com.nesryne.wallet.entities;
 
 
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 // import lombok.Data;
 
 // @Data
 @Entity
+@Table (name="Utilisateurs")
 public class Utilisateur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idUtilisateur")
     private Long idUtilisateur;
+    @Column(name = "nom")
     private String nom;
+    @Column(name = "renom")
     private String prenom;
+    @Column(name = "email")
     private String email;
+    @Column(name = "motDePasse")
     private String motDePasse; 
+    @Column(name = "role")
     private String role;
+    @Column(name = "soldeDeCompte")
     private Double soldeDeCompte;
+
+    @OneToMany(mappedBy = "utilisateur")
+    private List<Depenses> depenses;
+    @OneToMany(mappedBy = "utilisateur")
+    private List<Revenu> revenus;
+
 	public Utilisateur() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -88,7 +107,7 @@ public class Utilisateur {
     public void setSoldeDeCompte(Double soldeDeCompte) {
         this.soldeDeCompte = soldeDeCompte;
     }
-
+    
     
 }
 
