@@ -12,10 +12,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name="Depenses")
-public class Depenses {
+public class Depense {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-private Long idDepenses;
+private Long idDepense;
 	@Column(name="date")
 private Date date;
 	@Column(name="montant")
@@ -23,23 +23,23 @@ private Double montant;
 	@Column(name="Description")
 private String description;
 
-public Depenses() {
+public Depense() {
 	super();
 	// TODO Auto-generated constructor stub
 }
 
-public Depenses(Date date, Double montant, String description) {
+public Depense(Date date, Double montant, String description) {
 	super();
 	this.date = date;
 	this.montant = montant;
 	this.description = description;
 }
 
-public Long getIdDepenses() {
-	return idDepenses;
+public Long getIdDepense() {
+	return idDepense;
 }
-public void setIdDepenses(Long idDepenses) {
-	this.idDepenses = idDepenses;
+public void setIdDepense(Long idDepense) {
+	this.idDepense = idDepense;
 }
 public Date getDate() {
 	return date;
@@ -62,7 +62,7 @@ public void setDescription(String description) {
 
 @Override
 public String toString() {
-	return "Depenses [idDepenses=" + idDepenses + ", date=" + date + ", montant=" + montant + ", description="
+	return "Depense [idDepense=" + idDepense + ", date=" + date + ", montant=" + montant + ", description="
 			+ description + "]";
 }
 

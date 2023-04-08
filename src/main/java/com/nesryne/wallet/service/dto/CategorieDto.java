@@ -4,7 +4,7 @@ import java.util.Date;
 
 import lombok.Data;
 @Data
-public class CategoriesDto {
+public class CategorieDto {
     private Long idCategorie;
 	private String description;
 	private String typeCategorie;

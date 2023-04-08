@@ -8,13 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
 @Entity
 @Table (name="Categories")
-public class Categories {
+public class Categorie {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idCategorie;
@@ -25,10 +26,11 @@ public class Categories {
 	@Column(name="date")
 	private Date date;
 
-	@OneToMany(mappedBy = "categories")
-    private List<Depenses> depenses;
+	@OneToMany
+	@JoinColumn(name="category_id")
+    private List<Depense> depenses;
 
-	public Categories(Long idCategorie, String description, String typeCategorie, Date date) {
+	public Categorie(Long idCategorie, String description, String typeCategorie, Date date) {
 		this.idCategorie = idCategorie;
 		this.description = description;
 		this.typeCategorie = typeCategorie;
@@ -37,7 +39,7 @@ public class Categories {
 	
 	@Override
 	public String toString() {
-		return "Categories [idCategorie=" + idCategorie + ", description=" + description + ", typeCategorie="
+		return "Categorie [idCategorie=" + idCategorie + ", description=" + description + ", typeCategorie="
 				+ typeCategorie + ", date=" + date + "]";
 	}
 

@@ -11,51 +11,51 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nesryne.wallet.entities.Depenses;
-import com.nesryne.wallet.service.DepensesService;
-import com.nesryne.wallet.service.dto.DepensesDto;
+import com.nesryne.wallet.entities.Depense;
+import com.nesryne.wallet.service.DepenseService;
+import com.nesryne.wallet.service.dto.DepenseDto;
 @RestController
-public class DepensesController {
+public class DepenseController {
 
     @Autowired
-    private DepensesService depensesService;
+    private DepenseService depenseService;
 
 
     @PostMapping("/Depenses")
     @ResponseBody
-    public DepensesDto saveDepenses( @RequestBody DepensesDto depensesDto)
+    public DepenseDto saveDepenses( @RequestBody DepenseDto depenseDto)
     {
-        return depensesService.saveDepenses(depensesDto);
+        return depenseService.saveDepenses(depenseDto);
     }
     
     @GetMapping("/getDepenses")
     @ResponseBody
  
-    public List<Depenses> getAllBudgets() {
-        return depensesService.getAllDepenses();
+    public List<Depense> getAllBudgets() {
+        return depenseService.getAllDepenses();
     }
  
     @PutMapping("/updateDepenses")
  
-    public DepensesDto
-    updateDepenses(@RequestBody DepensesDto depensesDto)
+    public DepenseDto
+    updateDepenses(@RequestBody DepenseDto depenseDto)
     {
-        return depensesService.updateDepenses(depensesDto);
+        return depenseService.updateDepenses(depenseDto);
     }
  
     
     @DeleteMapping("/deleteDepenses/{id}")
  @ResponseBody
-    public void deleteDepensesById(@PathVariable("id") Long idDepenses)
+    public void deleteDepensesById(@PathVariable("id") Long idDepense)
     {
-        depensesService.deleteDepensesById(idDepenses);
+        depenseService.deleteDepensesById(idDepense);
          
         }
     @GetMapping("/mesDepenses")
     @ResponseBody
  
-    public Depenses getDepenses(@PathVariable("id") Long idDepenses) {
-        return depensesService.getDepenses(idDepenses);
+    public Depense getDepenses(@PathVariable("id") Long idDepense) {
+        return depenseService.getDepenses(idDepense);
 
         
         

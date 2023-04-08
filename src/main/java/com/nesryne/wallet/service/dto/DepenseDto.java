@@ -4,8 +4,8 @@ import java.util.Date;
 
 import lombok.Data;
 @Data
-public class DepensesDto {
-    private Long idDepenses;
+public class DepenseDto {
+    private Long idDepense;
     private Date date;
     private Double montant;
     private String Description;
