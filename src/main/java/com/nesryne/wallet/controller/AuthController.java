@@ -24,9 +24,11 @@ import com.nesryne.wallet.payload.Response.MessageResponse;
 import com.nesryne.wallet.repository.UtilisateurRepository;
 import com.nesryne.wallet.service.jwt.UserDetailsImpl;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+
 @RestController
 @RequestMapping("/api/auth")
+@CrossOrigin(origins = "*", maxAge = 3600)
+
 public class AuthController {
     @Autowired
     AuthenticationManager authenticationManager;
