@@ -17,7 +17,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table (name="Categorie")
-@NoArgsConstructor
 public class Categorie {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
