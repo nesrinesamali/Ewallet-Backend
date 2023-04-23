@@ -39,7 +39,12 @@ public class UtilisateurController {
     public List<Utilisateur> getAllUtilisateurs() {
          return utilisateurService.getAllUtilisateurs();
     }
+    @GetMapping("/monUtilisateur")
+    @ResponseBody
  
+    public Utilisateur getUtilisateur(@PathVariable("id") Long idUtilisateur) {
+        return utilisateurService.getUtilisateur(idUtilisateur);
+    }
     @PutMapping("/updateUtilisateur")
     @ResponseBody
     public UtilisateurDto updateUtilisateur( @RequestBody UtilisateurDto utilisateurDto)

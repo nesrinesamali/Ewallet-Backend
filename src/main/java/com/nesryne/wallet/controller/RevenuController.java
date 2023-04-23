@@ -39,7 +39,13 @@ public class RevenuController {
     public List<Revenu> getAllRevenus() {
           return revenuService.getAllRevenus();    
     }
+    @GetMapping("/monRevenu")
+    @ResponseBody
  
+    public Revenu getRevenu(@PathVariable("id") Long idRevenu) {
+        return revenuService.getRevenu(idRevenu);
+
+    }
     @PutMapping("/updateRevenu")
     @ResponseBody
     public RevenuDto updateRevenu( @RequestBody RevenuDto revenuDto)

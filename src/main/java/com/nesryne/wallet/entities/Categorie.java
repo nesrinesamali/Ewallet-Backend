@@ -12,9 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.NoArgsConstructor;
+
 
 @Entity
 @Table (name="Categorie")
+@NoArgsConstructor
 public class Categorie {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

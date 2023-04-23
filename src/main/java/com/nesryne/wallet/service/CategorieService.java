@@ -12,7 +12,7 @@ public interface CategorieService {
         CategorieDto  updateCategories(CategorieDto categorieDto);
         void deleteCategoriesById(Long idCategorie);
         Categorie getCategories(Long idCategorie);
-        List<Categorie > getAllCategories();
+        List<CategorieDto > getAllCategories();
         
         
 }

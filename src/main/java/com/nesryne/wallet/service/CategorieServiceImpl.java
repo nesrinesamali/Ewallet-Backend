@@ -48,8 +48,8 @@ public void deleteCategoriesById(Long idCategorie) {
 public Categorie getCategories(Long idCategorie) {
     return CategorieRepository.findById(idCategorie).get();}
 @Override
-public List<Categorie> getAllCategories() {
-    return CategorieRepository.findAll();
+public List<CategorieDto> getAllCategories() {
+    return categorieMapper.toDto(CategorieRepository.findAll());
 }
 }
 
