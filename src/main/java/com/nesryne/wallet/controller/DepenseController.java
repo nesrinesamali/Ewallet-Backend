@@ -1,27 +1,30 @@
 package com.nesryne.wallet.controller;
 import java.util.List;
 
+import com.nesryne.wallet.service.mapper.DepenseMapper;
+import com.nesryne.wallet.service.mapper.RevenuMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.nesryne.wallet.entities.Depense;
 import com.nesryne.wallet.service.DepenseService;
 import com.nesryne.wallet.service.dto.DepenseDto;
 @RestController
+
 public class DepenseController {
 
     @Autowired
     private DepenseService depenseService;
 
+    @Autowired
+    private DepenseMapper depenseMapper;
 
-    @PostMapping("/Depenses")
+    public DepenseController(DepenseMapper depenseMapper) {
+        this.depenseMapper = depenseMapper;
+
+    }
+
+    @PostMapping("/depenses")
     @ResponseBody
     public DepenseDto saveDepenses( @RequestBody DepenseDto depenseDto)
     {

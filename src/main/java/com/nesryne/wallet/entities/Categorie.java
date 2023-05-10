@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table (name="Categories")
+@Table (name="Categorie")
 public class Categorie {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -36,7 +36,11 @@ public class Categorie {
 		this.typeCategorie = typeCategorie;
 		this.date = date;
 	}
-	
+
+	public Categorie() {
+		super();
+	}
+
 	@Override
 	public String toString() {
 		return "Categorie [idCategorie=" + idCategorie + ", description=" + description + ", typeCategorie="

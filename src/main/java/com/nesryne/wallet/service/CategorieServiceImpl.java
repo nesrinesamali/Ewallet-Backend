@@ -29,10 +29,12 @@ public CategorieServiceImpl(CategorieMapper categorieMapper,CategorieRepository 
 
 
 @Override
-public CategorieDto saveCategories(CategorieDto categorieDto) {
-    Categorie categorie=categorieMapper.toEntity(categorieDto);
-    categorie=CategorieRepository.save(categorie);
-    return categorieMapper.toDto(categorie);}
+public Categorie saveCategories(Categorie categorie) {
+//    Categorie categorie=categorieMapper.toEntity(categorieDto);
+//    categorie=CategorieRepository.save(categorie);
+//    return categorieMapper.toDto(categorie);
+    return CategorieRepository.save(categorie);
+}
 
 @Override
 public CategorieDto updateCategories(CategorieDto categorieDto) {

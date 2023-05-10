@@ -26,13 +26,16 @@ public UtilisateurServiceImpl(UtilisateurMapper utilisateurMapper,UtilisateurRep
 }
 
 @Override
-public UtilisateurDto  saveUtilisateur(UtilisateurDto utilisateurDto) {
-    Utilisateur utilisateur=utilisateurMapper.toEntity(utilisateurDto);
-    utilisateur=utilisateurRepository.save(utilisateur);
-    return utilisateurMapper.toDto(utilisateur);}
+public Utilisateur saveUtilisateur(Utilisateur utilisateur) {
+//    Utilisateur utilisateur=utilisateurMapper.toEntity(utilisateurDto);
+//    utilisateur=utilisateurRepository.save(utilisateur);
+//    return utilisateurMapper.toDto(utilisateur);
+    return utilisateurRepository.save(utilisateur);
+}
 
 
-@Override
+
+    @Override
 public UtilisateurDto updateUtilisateur(UtilisateurDto utilisateurDto) {
     Utilisateur utilisateur=utilisateurMapper.toEntity(utilisateurDto);
     utilisateur=utilisateurRepository.save(utilisateur);

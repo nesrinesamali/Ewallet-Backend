@@ -2,35 +2,35 @@ package com.nesryne.wallet.controller;
 
 import java.util.List;
 
+import com.nesryne.wallet.service.mapper.CategorieMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.nesryne.wallet.entities.Categorie;
 import com.nesryne.wallet.service.CategorieService;
 import com.nesryne.wallet.service.dto.CategorieDto;
 
-
+@RequestMapping("/categories")
 @RestController
 public class CategorieController {
     @Autowired
     private CategorieService categorieService;
 
+    @Autowired
+    private CategorieMapper categorieMapper;
 
-    @PostMapping("/Categories")
+    public CategorieController(CategorieMapper categorieMapper) {
+        this.categorieMapper = categorieMapper;
+
+    }
+    @PostMapping("/savecategorie")
     @ResponseBody
-    public CategorieDto saveCategories( @RequestBody CategorieDto categorieDto)
+    public Categorie saveCategories( @RequestBody Categorie categorie)
     {
-        return categorieService.saveCategories(categorieDto);
+        return categorieService.saveCategories(categorie);
     }
     
-    @GetMapping("/getCategories")
+    @GetMapping("/getAll")
     @ResponseBody
  
     public List<Categorie> getAllCategories() {

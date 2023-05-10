@@ -2,6 +2,7 @@ package com.nesryne.wallet.controller;
 
 import java.util.List;
 
+import com.nesryne.wallet.repository.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,23 +16,27 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nesryne.wallet.entities.Utilisateur;
 import com.nesryne.wallet.service.UtilisateurService;
 import com.nesryne.wallet.service.dto.UtilisateurDto;
-// import com.nesryne.wallet.service.mapper.UtilisateurMapper;
+ import com.nesryne.wallet.service.mapper.UtilisateurMapper;
 
 @RestController
 public class UtilisateurController {
     @Autowired
     private UtilisateurService utilisateurService;
-    // @Autowired
-    // private UtilisateurMapper utilisateurMapper;
-    
-    @PostMapping("/SaveUtilisateur")
+     @Autowired
+     private UtilisateurMapper utilisateurMapper;
+    public UtilisateurController(UtilisateurMapper utilisateurMapper) {
+        this.utilisateurMapper = utilisateurMapper;
+
+    }
+
+    @PostMapping("/saveUtilisateur")
     @ResponseBody
-    public UtilisateurDto saveUtilisateur( @RequestBody UtilisateurDto utilisateurDto)
+    public Utilisateur saveUtilisateur( @RequestBody Utilisateur utilisateur)
     {
-        return utilisateurService.saveUtilisateur(utilisateurDto);
+        return utilisateurService.saveUtilisateur(utilisateur);
     }
     
-    @GetMapping("/Utilisateurs")
+    @GetMapping("/utilisateurs")
     @ResponseBody
  
     public List<Utilisateur> getAllUtilisateurs() {

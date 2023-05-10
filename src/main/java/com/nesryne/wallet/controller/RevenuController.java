@@ -4,36 +4,36 @@ package com.nesryne.wallet.controller;
 
 import java.util.List;
 
+import com.nesryne.wallet.repository.RevenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.nesryne.wallet.entities.Revenu;
 import com.nesryne.wallet.service.RevenuService;
 import com.nesryne.wallet.service.dto.RevenuDto;
-// import com.nesryne.wallet.service.mapper.RevenuMapper;
+ import com.nesryne.wallet.service.mapper.RevenuMapper;
 
 @RestController
+
 public class RevenuController {
     @Autowired
     private RevenuService revenuService;
-    // @Autowired
-    // private RevenuMapper revenuMapper;
-    
-    @PostMapping("/SaveRevenu")
+     @Autowired
+     private RevenuMapper revenuMapper;
+
+    public RevenuController(RevenuMapper revenuMapper) {
+        this.revenuMapper = revenuMapper;
+
+    }
+
+    @PostMapping("/saveRevenu")
     @ResponseBody
     public RevenuDto saveRevenu( @RequestBody RevenuDto revenuDto)
     {
         return revenuService.saveRevenu(revenuDto);
     }
     
-    @GetMapping("/Revenus")
+    @GetMapping("/revenus")
     @ResponseBody
  
     public List<Revenu> getAllRevenus() {
