@@ -38,7 +38,11 @@ public class Categorie {
 		this.typeCategorie = typeCategorie;
 		this.date = date;
 	}
-	
+
+	public Categorie() {
+		super();
+	}
+
 	@Override
 	public String toString() {
 		return "Categorie [idCategorie=" + idCategorie + ", description=" + description + ", typeCategorie="

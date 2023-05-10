@@ -7,7 +7,7 @@ import com.nesryne.wallet.service.dto.UtilisateurDto;
 
 public interface UtilisateurService {
 
-    UtilisateurDto  saveUtilisateur(UtilisateurDto utilisateurDto);
+    Utilisateur saveUtilisateur(Utilisateur utilisateur);
     UtilisateurDto  updateUtilisateur(UtilisateurDto utilisateurDto);
     void deleteUtilisateurById(Long idUtilisateur);
     Utilisateur getUtilisateur(Long idUtilisateur);

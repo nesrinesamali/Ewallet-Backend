@@ -9,11 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.nesryne.wallet.config.JwtUtils;
 import com.nesryne.wallet.entities.Utilisateur;
@@ -42,6 +38,15 @@ public class AuthController {
 
     @Autowired
     JwtUtils jwtUtils;
+    @GetMapping("/pages-login")
+    public String showLoginPage() {
+        return "pages-login";
+    }
+
+    @GetMapping("/pages-register")
+    public String showRegisterPage() {
+        return "pages-register";
+    }
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -49,7 +54,6 @@ public class AuthController {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getNom(), loginRequest.getMotDePasse()));
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();

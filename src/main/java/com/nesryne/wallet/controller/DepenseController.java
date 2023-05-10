@@ -1,6 +1,8 @@
 package com.nesryne.wallet.controller;
 import java.util.List;
 
+import com.nesryne.wallet.service.mapper.DepenseMapper;
+import com.nesryne.wallet.service.mapper.RevenuMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,14 +10,25 @@ import com.nesryne.wallet.entities.Depense;
 import com.nesryne.wallet.service.DepenseService;
 import com.nesryne.wallet.service.dto.DepenseDto;
 @RestController
+<<<<<<< HEAD
 @CrossOrigin(origins = "http://localhost:4200")
+=======
+
+>>>>>>> 25fd4dbdc315cbcd7fe82e7efda1a699e6dffeaf
 public class DepenseController {
 
     @Autowired
     private DepenseService depenseService;
 
+    @Autowired
+    private DepenseMapper depenseMapper;
 
-    @PostMapping("/Depenses")
+    public DepenseController(DepenseMapper depenseMapper) {
+        this.depenseMapper = depenseMapper;
+
+    }
+
+    @PostMapping("/depenses")
     @ResponseBody
     public DepenseDto saveDepenses( @RequestBody DepenseDto depenseDto)
     {
