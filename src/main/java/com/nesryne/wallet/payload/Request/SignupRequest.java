@@ -25,7 +25,7 @@ public class SignupRequest {
   public void setNom(String nom) {
     this.nom = nom;
   }
-
+  
   public String getMotDePasse() {
     return motDePasse;
   }
