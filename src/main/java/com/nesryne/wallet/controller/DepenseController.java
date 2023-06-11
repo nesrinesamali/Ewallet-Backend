@@ -26,6 +26,7 @@ public class DepenseController {
 
     @PostMapping("/depenses")
     @ResponseBody
+    
     public DepenseDto saveDepenses( @RequestBody DepenseDto depenseDto)
     {
         return depenseService.saveDepenses(depenseDto);

@@ -3,6 +3,7 @@ package com.nesryne.wallet.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ public class Categorie {
 	@Column(name="date")
 	private Date date;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="category_id")
     private List<Depense> depenses;
 
@@ -71,6 +72,16 @@ public class Categorie {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
+	public List<Depense> getDepenses() {
+		return depenses;
+	}
+
+	public void setDepenses(List<Depense> depenses) {
+		this.depenses = depenses;
+	}
+
+
 	
 	
 

@@ -4,6 +4,7 @@ package com.nesryne.wallet.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,16 +39,16 @@ public class Utilisateur {
     private Double soldeDeCompte;
 
     @OneToMany
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="user_id",nullable = false)
     private List<Depense> depenses;
 
-    @OneToMany
-    @JoinColumn(name="user_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="user_id", nullable = false)
     private List<Revenu> revenus;
 
 	public Utilisateur() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
    
@@ -110,6 +111,26 @@ public class Utilisateur {
 
     public void setSoldeDeCompte(Double soldeDeCompte) {
         this.soldeDeCompte = soldeDeCompte;
+    }
+
+
+    public List<Depense> getDepenses() {
+        return depenses;
+    }
+
+
+    public void setDepenses(List<Depense> depenses) {
+        this.depenses = depenses;
+    }
+
+
+    public List<Revenu> getRevenus() {
+        return revenus;
+    }
+
+
+    public void setRevenus(List<Revenu> revenus) {
+        this.revenus = revenus;
     }
     
     

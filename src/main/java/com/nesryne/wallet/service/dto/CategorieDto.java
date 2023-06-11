@@ -9,5 +9,6 @@ public class CategorieDto {
 	private String description;
 	private String typeCategorie;
     private Date date;
+    private Long userId;
 	
 }

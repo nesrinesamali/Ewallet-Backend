@@ -7,7 +7,6 @@ import com.nesryne.wallet.service.dto.CategorieDto;
 
 public interface CategorieService {
    
-    
         Categorie  saveCategories(Categorie categorie);
         CategorieDto  updateCategories(CategorieDto categorieDto);
         void deleteCategoriesById(Long idCategorie);

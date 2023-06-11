@@ -4,23 +4,31 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.ManyToAny;
 
 
 @Entity
 @Table (name="Depense")
 public class Depense {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+
+@Id
+@GeneratedValue(strategy=GenerationType.IDENTITY)
 private Long idDepense;
-	@Column(name="date")
+
+@Column(name="date")
 private Date date;
-	@Column(name="montant")
+
+@Column(name="montant")
 private Double montant;
-	@Column(name="Description")
+	
+@Column(name="Description")
 private String description;
 
 public Depense() {
@@ -65,5 +73,6 @@ public String toString() {
 	return "Depense [idDepense=" + idDepense + ", date=" + date + ", montant=" + montant + ", description="
 			+ description + "]";
 }
+
 
 }
