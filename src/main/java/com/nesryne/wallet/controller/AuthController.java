@@ -18,7 +18,6 @@ import com.nesryne.wallet.payload.Request.SignupRequest;
 import com.nesryne.wallet.payload.Response.JwtResponse;
 import com.nesryne.wallet.payload.Response.MessageResponse;
 import com.nesryne.wallet.repository.UtilisateurRepository;
-import com.nesryne.wallet.service.jwt.UserDetailsImpl;
 
 
 @RestController
@@ -47,20 +46,25 @@ public class AuthController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> authenticateUser( @RequestBody LoginRequest loginRequest) {
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getMotDePasse()));
+        } catch(Exception e )
+        {
+            e.printStackTrace();
+        }
+       
 
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getNom(), loginRequest.getMotDePasse()));
+                Utilisateur user =  utilisateurRepository.findByEmail(loginRequest.getEmail()).get();
+        String jwt = jwtUtils.generateJwtToken(user);
 
-        String jwt = jwtUtils.generateJwtToken(authentication);
-
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
       
 
         return ResponseEntity.ok(new JwtResponse(jwt,
-                userDetails.getIdUtilisateur(),
-                userDetails.getUsername(),
-                userDetails.getEmail()
+        user.getIdUtilisateur(),
+        user.getUsername(),
+        user.getRole()
                ));
     }
 

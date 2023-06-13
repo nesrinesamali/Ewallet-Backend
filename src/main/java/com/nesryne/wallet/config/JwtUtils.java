@@ -6,18 +6,17 @@ import java.util.Map;
 import java.util.function.Function;
 
 import io.jsonwebtoken.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+// import org.slf4j.Logger;
+// import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
+// import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import com.nesryne.wallet.service.jwt.UserDetailsImpl;
 
 @Component
 public class JwtUtils {
-    private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
+    // private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
     @Value("${bezkoder.app.jwtSecret}")
     private String jwtSecret;
@@ -25,16 +24,13 @@ public class JwtUtils {
     @Value("${bezkoder.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
-    public String generateJwtToken(Authentication authentication) {
+    public String generateJwtToken(UserDetails userDetails) {
 
-        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
         Map<String, Object> claims = new HashMap<>();
-        claims.put("id", userPrincipal.getIdUtilisateur());
-        claims.put("username", userPrincipal.getUsername());
-        claims.put("email", userPrincipal.getEmail());
+        claims.put("username", userDetails.getUsername());
         return Jwts.builder()
                 .setClaims(claims)
-                .setSubject((userPrincipal.getUsername()))
+                .setSubject((userDetails.getUsername()))
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + (jwtExpirationMs*1000)))
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)

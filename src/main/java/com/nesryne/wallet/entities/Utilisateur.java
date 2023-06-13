@@ -2,6 +2,8 @@ package com.nesryne.wallet.entities;
 
 
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,12 +15,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 // import lombok.Data;
 
 // @Data
 @Entity
 @Table (name="Utilisateur")
-public class Utilisateur {
+public class Utilisateur implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,7 +52,7 @@ public class Utilisateur {
 
 	public Utilisateur() {
 		super();
-		// TODO Auto-generated constructor stub
+	
 	}
 
    
@@ -110,6 +115,55 @@ public class Utilisateur {
 
     public void setSoldeDeCompte(Double soldeDeCompte) {
         this.soldeDeCompte = soldeDeCompte;
+    }
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+       
+        return Collections.singleton(new SimpleGrantedAuthority(this.role));
+    }
+
+
+    @Override
+    public String getPassword() {
+      
+        return motDePasse;
+    }
+
+
+    @Override
+    public String getUsername() {
+     
+        return email ;
+    }
+
+
+    @Override
+    public boolean isAccountNonExpired() {
+      
+        return true ;
+    }
+
+
+    @Override
+    public boolean isAccountNonLocked() {
+       
+        return true ;
+    }
+
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+       
+        return true ;
+    }
+
+
+    @Override
+    public boolean isEnabled() {
+     
+        return true ;
     }
     
     

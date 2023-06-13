@@ -20,17 +20,19 @@ import org.springframework.stereotype.Component;
 // import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.nesryne.wallet.repository.UtilisateurRepository;
 
-import com.nesryne.wallet.service.jwt.UserDetailsServiceImpl;
+
+
 
 
 @Component
 public class AuthTokenFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtils jwtUtils;
-
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private UtilisateurRepository utilisateurRepository ; 
+   
 
     private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
@@ -62,8 +64,8 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         //Once we get the token validate it.
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-
+            UserDetails userDetails = utilisateurRepository.findByEmail(username).orElse(null);
+          
             // if token is valid configure Spring Security to manually set authentication
             if (jwtUtils.validateJwtToken(jwtToken, userDetails)) {
 
