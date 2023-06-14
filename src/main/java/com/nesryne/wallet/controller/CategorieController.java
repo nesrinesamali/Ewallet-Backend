@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.nesryne.wallet.service.mapper.CategorieMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import com.nesryne.wallet.entities.Categorie;
@@ -23,11 +24,12 @@ public class CategorieController {
         this.categorieMapper = categorieMapper;
 
     }
-    @PostMapping("/savecategorie")
+    @PostMapping("/saveCategorie")
     @ResponseBody
-    public Categorie saveCategories( @RequestBody Categorie categorie)
+    public Categorie saveCategories( @RequestBody Categorie categorie , Authentication authentication)
     {
-        return categorieService.saveCategories(categorie);
+
+        return categorieService.saveCategories(categorie , authentication);
     }
     
     @GetMapping("/getAll")

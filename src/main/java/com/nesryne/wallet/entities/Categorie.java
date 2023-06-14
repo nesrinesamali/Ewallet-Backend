@@ -26,6 +26,8 @@ public class Categorie {
 	@Column(name="date")
 	private Date date;
 
+	private Long creatorId;
+
 	@OneToMany
 	@JoinColumn(name="category_id")
     private List<Depense> depenses;
@@ -70,6 +72,14 @@ public class Categorie {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public Long getCreatorId() {
+		return creatorId;
+	}
+
+	public void setCreatorId(Long creatorId) {
+		this.creatorId = creatorId;
 	}
 	
 	
