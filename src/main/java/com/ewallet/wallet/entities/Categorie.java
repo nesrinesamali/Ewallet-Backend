@@ -3,6 +3,7 @@ package com.ewallet.wallet.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class Categorie {
 
 	private Long creatorId;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="category_id")
     private List<Depense> depenses;
 
@@ -86,6 +87,16 @@ public class Categorie {
 	public void setCreatorId(Long creatorId) {
 		this.creatorId = creatorId;
 	}
+
+	public List<Depense> getDepenses() {
+		return depenses;
+	}
+
+	public void setDepenses(List<Depense> depenses) {
+		this.depenses = depenses;
+	}
+
+
 	
 	
 

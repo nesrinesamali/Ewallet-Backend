@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,16 +44,17 @@ public class Utilisateur implements UserDetails{
     private Double soldeDeCompte;
 
     @OneToMany
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="user_id",nullable = false)
     private List<Depense> depenses;
 
-    @OneToMany
-    @JoinColumn(name="user_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="user_id", nullable = false)
     private List<Revenu> revenus;
 
 	public Utilisateur() {
 		super();
 	
+		
 	}
 
    
@@ -164,6 +166,24 @@ public class Utilisateur implements UserDetails{
     public boolean isEnabled() {
      
         return true ;
+    }
+    public List<Depense> getDepenses() {
+        return depenses;
+    }
+
+
+    public void setDepenses(List<Depense> depenses) {
+        this.depenses = depenses;
+    }
+
+
+    public List<Revenu> getRevenus() {
+        return revenus;
+    }
+
+
+    public void setRevenus(List<Revenu> revenus) {
+        this.revenus = revenus;
     }
     
     

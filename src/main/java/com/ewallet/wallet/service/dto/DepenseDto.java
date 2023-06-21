@@ -9,5 +9,7 @@ public class DepenseDto {
     private Date date;
     private Double montant;
     private String Description;
+    private Long userId;
+    private Long categorieId;
     
 }

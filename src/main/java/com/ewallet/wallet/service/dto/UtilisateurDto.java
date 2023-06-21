@@ -13,5 +13,7 @@ public class UtilisateurDto {
     private String motDePasse; 
     private String Role;
     private Double soldeDeCompte;
+    private Double RevenuDuJour;
+    private Double DepenseDuJour;
 
 }
