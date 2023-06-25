@@ -1,5 +1,7 @@
 package com.ewallet.wallet.service;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import com.ewallet.wallet.entities.Utilisateur;
 import com.ewallet.wallet.repository.CategorieRepository;
 import com.ewallet.wallet.repository.UtilisateurRepository;
 import com.ewallet.wallet.service.dto.CategorieDto;
+import com.ewallet.wallet.service.dto.CategorieDepenseDto;
 import com.ewallet.wallet.service.mapper.CategorieMapper;
 
 @Service
@@ -35,11 +38,11 @@ public CategorieServiceImpl(CategorieMapper categorieMapper,CategorieRepository 
 
 @Override
 public Categorie saveCategories(Categorie categorie , Authentication authentication) {
-    Utilisateur utilisateur = utilisateurRepository.findByEmail(authentication.getName()).get();
+    // Utilisateur utilisateur = utilisateurRepository.findByEmail(authentication.getName()).get();
 //    Categorie categorie=categorieMapper.toEntity(categorieDto);
 //    categorie=CategorieRepository.save(categorie);
 //    return categorieMapper.toDto(categorie);
-categorie.setCreatorId(utilisateur.getIdUtilisateur());
+// categorie.setCreatorId(utilisateur.getIdUtilisateur());
     return CategorieRepository.save(categorie);
 }
 
@@ -60,5 +63,14 @@ public Categorie getCategories(Long idCategorie) {
 public List<Categorie> getAllCategories() {
     return CategorieRepository.findAll();
 }
+
+public List<CategorieDepenseDto> listDepenseByCategory() {
+    List<Object[]> results = CategorieRepository.listDepenseByCategory();
+     List<CategorieDepenseDto> catDepDtos = new ArrayList<>() ;
+     for (Object[] result :results ){
+        catDepDtos.add(new CategorieDepenseDto((String)result[0], (Double)result[1]));
+     }
+  return catDepDtos ;
+    }
 }
 

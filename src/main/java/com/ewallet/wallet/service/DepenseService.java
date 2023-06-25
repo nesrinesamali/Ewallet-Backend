@@ -1,5 +1,6 @@
 package com.ewallet.wallet.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.ewallet.wallet.entities.Depense;
@@ -10,6 +11,8 @@ public interface DepenseService {
     DepenseDto   updateDepenses(DepenseDto depenseDto);
     void deleteDepensesById(Long idDepense);
     Depense  getDepenses(Long idDepense);
-    List<Depense  > getAllDepenses();
+    List<Depense > getAllDepenses();
+    List<Depense> findLastDepenses();
+    Double getTotalDepenseAmount();
     
 }

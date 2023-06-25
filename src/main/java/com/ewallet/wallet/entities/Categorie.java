@@ -3,6 +3,7 @@ package com.ewallet.wallet.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,19 +27,39 @@ public class Categorie {
 	@Column(name="budget")
 	private Number budget;
 
-	private Long creatorId;
-
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="category_id")
     private List<Depense> depenses;
 
-	public Categorie(Long idCategorie, String description, String nom, Number budget) {
+	public Categorie(Long idCategorie, String description, String nom, Number budget ) {
 		this.idCategorie = idCategorie;
 		this.description = description;
 		this.nom = nom;
 		this.budget = budget;
 	}
 
+	public Categorie() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "Categorie [idCategorie=" + idCategorie + ", description=" + description + ", nom="
+		+ nom + ", budget=" + budget + "]";
+	}
+
+	public Long getIdCategorie() {
+		return idCategorie;
+	}
+	public void setIdCategorie(Long idCategorie) {
+		this.idCategorie = idCategorie;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getNom() {
 		return nom;
 	}
@@ -54,38 +75,15 @@ public class Categorie {
 	public void setBudget(Number budget) {
 		this.budget = budget;
 	}
-
-	public Categorie() {
-		super();
+	public List<Depense> getDepenses() {
+		return depenses;
 	}
 
-	@Override
-	public String toString() {
-		return "Categorie [idCategorie=" + idCategorie + ", description=" + description + ", nom="
-				+ nom + ", budget=" + budget + "]";
+	public void setDepenses(List<Depense> depenses) {
+		this.depenses = depenses;
 	}
 
-	public Long getIdCategorie() {
-		return idCategorie;
-	}
-	public void setIdCategorie(Long idCategorie) {
-		this.idCategorie = idCategorie;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	
-	public Long getCreatorId() {
-		return creatorId;
-	}
 
-	public void setCreatorId(Long creatorId) {
-		this.creatorId = creatorId;
-	}
 	
 	
 

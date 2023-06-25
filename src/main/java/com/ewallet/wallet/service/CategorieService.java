@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.core.Authentication;
 
 import com.ewallet.wallet.entities.Categorie;
+import com.ewallet.wallet.service.dto.CategorieDepenseDto;
 import com.ewallet.wallet.service.dto.CategorieDto;
 
 public interface CategorieService {
@@ -15,6 +16,7 @@ public interface CategorieService {
         void deleteCategoriesById(Long idCategorie);
         Categorie getCategories(Long idCategorie);
         List<Categorie > getAllCategories();
+        List <CategorieDepenseDto> listDepenseByCategory();
         
         
 }
