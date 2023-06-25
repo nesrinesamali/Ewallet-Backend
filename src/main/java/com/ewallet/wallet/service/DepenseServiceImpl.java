@@ -1,5 +1,6 @@
 package com.ewallet.wallet.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,6 +77,18 @@ public Depense getDepenses(Long idDepense) {
 @Override
 public List<Depense> getAllDepenses() {
     return depenseRepository.findAll();
+}
+
+
+
+
+@Override
+public List<Depense> findLastDepenses() {
+    return depenseRepository.findLastDepenses();
+}
+@Override
+public Double getTotalDepenseAmount() {
+    return depenseRepository.getTotalDepenseAmount();
 }
     
 }

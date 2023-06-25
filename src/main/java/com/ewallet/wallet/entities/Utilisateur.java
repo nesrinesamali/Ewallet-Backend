@@ -5,6 +5,7 @@ package com.ewallet.wallet.entities;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -125,7 +126,13 @@ public class Utilisateur implements UserDetails{
        
         return Collections.singleton(new SimpleGrantedAuthority(this.role));
     }
-
+   
+    public List<String> getAuthoritiesAsStrings() {
+        return getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+    }
 
     @Override
     public String getPassword() {

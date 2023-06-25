@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import com.ewallet.wallet.entities.Categorie;
 import com.ewallet.wallet.service.CategorieService;
 import com.ewallet.wallet.service.dto.CategorieDto;
+import com.ewallet.wallet.service.dto.CategorieDepenseDto;
 
 @RequestMapping("/categories")
 @RestController
@@ -61,10 +62,12 @@ public class CategorieController {
     public Categorie getCategories(@PathVariable("id") Long idCategorie) {
         return categorieService.getCategories(idCategorie);
 
-        
-        
-        
+      
 }
+    @GetMapping("/categorieDepense")
+    public List<CategorieDepenseDto> listDepenseByCategory() {
+    return categorieService.listDepenseByCategory();
+    }
 }
 
 
