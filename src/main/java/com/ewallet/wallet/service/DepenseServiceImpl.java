@@ -90,5 +90,9 @@ public List<Depense> findLastDepenses() {
 public Double getTotalDepenseAmount() {
     return depenseRepository.getTotalDepenseAmount();
 }
-    
+
+@Override
+public List<Depense> getPaiementsPrevus() {
+    return depenseRepository.getPaiementsPrevus();
+}   
 }

@@ -14,5 +14,6 @@ public interface DepenseService {
     List<Depense > getAllDepenses();
     List<Depense> findLastDepenses();
     Double getTotalDepenseAmount();
+    List<Depense> getPaiementsPrevus();
     
 }

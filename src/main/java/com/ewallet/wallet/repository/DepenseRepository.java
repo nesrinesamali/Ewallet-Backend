@@ -14,5 +14,7 @@ public interface DepenseRepository extends JpaRepository<Depense,Long>{
     List<Depense> findLastDepenses();
     @Query(value = "SELECT SUM(montant) FROM depense", nativeQuery = true)
     Double getTotalDepenseAmount();
+    @Query(value = "SELECT * FROM depense WHERE statut IS NOT NULL", nativeQuery = true)
+    List<Depense> getPaiementsPrevus();
 }
 

@@ -11,5 +11,7 @@ public class DepenseDto {
     private String Description;
     private Long userId;
     private Long categorieId;
+    private String statut;
+    private Date datePrevue; 
     
 }

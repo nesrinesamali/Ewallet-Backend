@@ -51,4 +51,9 @@ public Revenu getRevenu(Long idRevenu) {
 public List<Revenu> getAllRevenus() {
     return revenuRepository.findAll();
 }
+@Override
+public Double getTotalRevenuAmount() {
+    return revenuRepository.getTotalRevenuAmount();
+}
+
 }

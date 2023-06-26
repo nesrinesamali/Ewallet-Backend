@@ -66,8 +66,16 @@ public class DepenseController {
     public List<Depense> findLastDepenses() {
         return depenseService.findLastDepenses();
     }
+
     @GetMapping("/totalDepense")
     public Double getTotalDepenseAmount() {
         return depenseService.getTotalDepenseAmount();
+    }
+
+    @GetMapping("/getPaiementsPrevus")
+    @ResponseBody
+
+    public List<Depense> getPaiementsPrevus() {
+        return depenseService.getPaiementsPrevus();
     }
 }

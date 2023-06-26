@@ -54,4 +54,8 @@ public class RevenuController {
         revenuService.deleteRevenuById(idRevenu);
         return "Deleted Successfully";
     }
+    @GetMapping("/totalRevenu")
+    public Double getTotalRevenuAmount() {
+        return revenuService.getTotalRevenuAmount();
+    }
 }

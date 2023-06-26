@@ -14,5 +14,6 @@ RevenuDto  updateRevenu(RevenuDto revenuDto);
 void deleteRevenuById(Long idRevenu);
 Revenu getRevenu(Long idRevenu);
 List<Revenu> getAllRevenus();
+Double getTotalRevenuAmount();
 }
 
