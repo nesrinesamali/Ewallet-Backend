@@ -42,34 +42,34 @@ public class DepenseServiceImpl implements DepenseService {
 
 
 @Override
-public DepenseDto saveDepenses(DepenseDto depenseDto) {
-    Depense depense= depenseMapper.toEntity(depenseDto);
+public DepenseDto saveDepense(DepenseDto depenseDto) {
+    Depense depense= DepenseDto.toEntity(depenseDto);
 
-    Optional<Utilisateur> utilisateurOpt = utilisateurRepository.findById(depenseDto.getUserId());
-    Utilisateur utilisateur = utilisateurOpt.isPresent()?utilisateurOpt.get():null;
-    if(utilisateur!=null){
-        utilisateur.getDepenses().add(depense);
-    }
   
+        Optional<Utilisateur> utilisateurOpt = utilisateurRepository.findById(depenseDto.getUserId());
+        Utilisateur utilisateur = utilisateurOpt.isPresent()?utilisateurOpt.get():null;
+        depense.setUtilisateur(utilisateur);
+    
+
+    Optional<Categorie> categorieOpt = categorieRepository.findById(depenseDto.getCategorieId());
+        Categorie categorie = categorieOpt.isPresent()?categorieOpt.get():null;
+        depense.setCategorie(categorie);
+   
     
 
     depenseRepository.save(depense);
     return depenseMapper.toDto(depense);
     }
 
-@Override
-public DepenseDto updateDepenses(DepenseDto depenseDto) {
-    Depense depense= depenseMapper.toEntity(depenseDto);
-    depense=depenseRepository.save(depense);
-    return depenseMapper.toDto(depense);}
+
 
 @Override
 public void deleteDepensesById(Long idDepense) {
     depenseRepository.deleteById(idDepense);
 }
 @Override
-public Depense getDepenses(Long idDepense) {
-    return depenseRepository.findById(idDepense).get();}
+public DepenseDto getDepense(Long idDepense) {
+    return DepenseDto.fromEntity(depenseRepository.findById(idDepense).get());}
 @Override
 public List<Depense> getAllDepenses() {
     return depenseRepository.findAll();

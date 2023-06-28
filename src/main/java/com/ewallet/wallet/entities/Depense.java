@@ -42,6 +42,9 @@ private String statut;
 @JoinColumn(name = "category_id")
 private Categorie categorie;	
 
+@ManyToOne
+@JoinColumn(name = "user_id")
+private Utilisateur utilisateur;
 
 public Depense() {
 	super();
@@ -95,14 +98,6 @@ public void setDescription(String description) {
 
 
 
-@Override
-public String toString() {
-	return "Depense [idDepense=" + idDepense + ", description=" + description + ", montant=" + montant + ", date="
-			+ date + ", datePrevue=" + datePrevue + ", statut=" + statut + "]";
-}
-
-
-
 public Categorie getCategorie() {
 	return categorie;
 }
@@ -112,6 +107,25 @@ public Categorie getCategorie() {
 public void setCategorie(Categorie categorie) {
 	this.categorie = categorie;
 }
+
+public Utilisateur getUtilisateur() {
+	return utilisateur;
+}
+
+
+
+public void setUtilisateur(Utilisateur utilisateur) {
+	this.utilisateur = utilisateur;
+}
+
+@Override
+public String toString() {
+	return "Depense [idDepense=" + idDepense + ", description=" + description + ", montant=" + montant + ", date="
+			+ date + ", datePrevue=" + datePrevue + ", statut=" + statut + "]";
+}
+
+
+
 
 
 }

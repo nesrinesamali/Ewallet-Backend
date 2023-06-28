@@ -7,10 +7,10 @@ import com.ewallet.wallet.entities.Depense;
 import com.ewallet.wallet.service.dto.DepenseDto;
 
 public interface DepenseService {
-    DepenseDto  saveDepenses(DepenseDto depenseDto);
-    DepenseDto   updateDepenses(DepenseDto depenseDto);
+    DepenseDto  saveDepense(DepenseDto depenseDto);
+ 
     void deleteDepensesById(Long idDepense);
-    Depense  getDepenses(Long idDepense);
+    DepenseDto  getDepense(Long idDepense);
     List<Depense > getAllDepenses();
     List<Depense> findLastDepenses();
     Double getTotalDepenseAmount();

@@ -12,31 +12,25 @@ import com.ewallet.wallet.service.DepenseService;
 import com.ewallet.wallet.service.dto.DepenseDto;
 
 @RestController
-
+@RequestMapping(value = "/depenses")
 public class DepenseController {
 
     @Autowired
     private DepenseService depenseService;
 
-    @Autowired
-    private DepenseMapper depenseMapper;
 
-    public DepenseController(DepenseMapper depenseMapper) {
-        this.depenseMapper = depenseMapper;
 
-    }
-
-    @PostMapping("/depenses")
+    @PostMapping("/saveDepense")
     @ResponseBody
     public DepenseDto saveDepenses(@RequestBody DepenseDto depenseDto) {
-        return depenseService.saveDepenses(depenseDto);
+        return depenseService.saveDepense(depenseDto);
     }
 
     @GetMapping("/getDepense/{id}")
     @ResponseBody
 
-    public Depense getDepense(@PathVariable Long id) {
-        return depenseService.getDepenses(id);
+    public DepenseDto getDepense(@PathVariable Long id) {
+        return depenseService.getDepense(id);
     }
 
     @GetMapping("/getDepenses")
@@ -46,11 +40,7 @@ public class DepenseController {
         return depenseService.getAllDepenses();
     }
 
-    @PutMapping("/updateDepenses")
-
-    public DepenseDto updateDepenses(@RequestBody DepenseDto depenseDto) {
-        return depenseService.updateDepenses(depenseDto);
-    }
+ 
 
     @DeleteMapping("/deleteDepenses/{id}")
     @ResponseBody
@@ -59,13 +49,13 @@ public class DepenseController {
 
     }
 
-    @GetMapping("/mesDepenses")
+    /*@GetMapping("/mesDepenses")
     @ResponseBody
 
     public Depense getDepenses(@PathVariable("id") Long idDepense) {
         return depenseService.getDepenses(idDepense);
 
-    }
+    }*/
 
     @GetMapping("/getLastDepenses")
     @ResponseBody

@@ -44,9 +44,7 @@ public class Utilisateur implements UserDetails{
     @Column(name = "soldeDeCompte")
     private Double soldeDeCompte;
 
-    @OneToMany
-    @JoinColumn(name="user_id",nullable = false)
-    private List<Depense> depenses;
+    
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="user_id", nullable = false)
@@ -174,14 +172,7 @@ public class Utilisateur implements UserDetails{
      
         return true ;
     }
-    public List<Depense> getDepenses() {
-        return depenses;
-    }
-
-
-    public void setDepenses(List<Depense> depenses) {
-        this.depenses = depenses;
-    }
+    
 
 
     public List<Revenu> getRevenus() {
