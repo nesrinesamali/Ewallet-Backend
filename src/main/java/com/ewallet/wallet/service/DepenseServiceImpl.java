@@ -50,11 +50,7 @@ public DepenseDto saveDepenses(DepenseDto depenseDto) {
     if(utilisateur!=null){
         utilisateur.getDepenses().add(depense);
     }
-    Optional<Categorie> categorieOpt = categorieRepository.findById(depenseDto.getCategorieId());
-    Categorie categorie = categorieOpt.isPresent()?categorieOpt.get():null;
-    if(categorie!=null){
-        categorie.getDepenses().add(depense);
-    }
+  
     
 
     depenseRepository.save(depense);

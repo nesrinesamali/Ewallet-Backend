@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -37,7 +38,9 @@ private Date datePrevue;
 @Column(name="Statut")
 private String statut;
 
-	
+@ManyToOne
+@JoinColumn(name = "category_id")
+private Categorie categorie;	
 
 
 public Depense() {
@@ -45,14 +48,7 @@ public Depense() {
 	// TODO Auto-generated constructor stub
 }
 
-public Depense(Date date, Double montant, String description, String statut, Date datePrevue) {
-	super();
-	this.date = date;
-	this.montant = montant;
-	this.description = description;
-	this.datePrevue = datePrevue;
-	this.statut = statut;
-}
+
 
 public Date getDatePrevue() {
 	return datePrevue;
@@ -79,11 +75,7 @@ public void setIdDepense(Long idDepense) {
 public Date getDate() {
 	return date;
 }
-@Override
-public String toString() {
-	return "Depense [idDepense=" + idDepense + ", description=" + description + ", montant=" + montant + ", date="
-			+ date + ", datePrevue=" + datePrevue + ", statut=" + statut + "]";
-}
+
 
 public void setDate(Date date) {
 	this.date = date;
@@ -101,6 +93,25 @@ public void setDescription(String description) {
 	this.description = description;
 }
 
+
+
+@Override
+public String toString() {
+	return "Depense [idDepense=" + idDepense + ", description=" + description + ", montant=" + montant + ", date="
+			+ date + ", datePrevue=" + datePrevue + ", statut=" + statut + "]";
+}
+
+
+
+public Categorie getCategorie() {
+	return categorie;
+}
+
+
+
+public void setCategorie(Categorie categorie) {
+	this.categorie = categorie;
+}
 
 
 }

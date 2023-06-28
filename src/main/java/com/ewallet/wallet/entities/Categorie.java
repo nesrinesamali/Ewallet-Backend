@@ -29,9 +29,7 @@ public class Categorie {
 
 	private Long creatorId;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="category_id")
-    private List<Depense> depenses;
+
 
 	public Categorie(Long idCategorie, String description, String nom, Number budget ) {
 		this.idCategorie = idCategorie;
@@ -84,13 +82,7 @@ public class Categorie {
 		this.creatorId = creatorId;
 	}
 
-	public List<Depense> getDepenses() {
-		return depenses;
-	}
-
-	public void setDepenses(List<Depense> depenses) {
-		this.depenses = depenses;
-	}
+	
 
 
 	

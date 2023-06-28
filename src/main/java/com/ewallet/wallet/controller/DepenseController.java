@@ -32,6 +32,13 @@ public class DepenseController {
         return depenseService.saveDepenses(depenseDto);
     }
 
+    @GetMapping("/getDepense/{id}")
+    @ResponseBody
+
+    public Depense getDepense(@PathVariable Long id) {
+        return depenseService.getDepenses(id);
+    }
+
     @GetMapping("/getDepenses")
     @ResponseBody
 
