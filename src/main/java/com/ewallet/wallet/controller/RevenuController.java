@@ -6,8 +6,10 @@ import java.util.List;
 
 import com.ewallet.wallet.repository.RevenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import com.ewallet.wallet.entities.Depense;
 import com.ewallet.wallet.entities.Revenu;
 import com.ewallet.wallet.service.RevenuService;
 import com.ewallet.wallet.service.dto.RevenuDto;
@@ -45,6 +47,13 @@ public class RevenuController {
     public RevenuDto updateRevenu( @RequestBody RevenuDto revenuDto)
     {
         return revenuService.updateRevenu(revenuDto);
+    }
+
+    @GetMapping("/getOwnRevenus")
+    @ResponseBody
+
+    public List<Revenu> getOwnRevenus(Authentication authentication) {
+        return revenuService.getOwnRevenus(authentication);
     }
     
     @DeleteMapping("/deleteRevenu/{id}")

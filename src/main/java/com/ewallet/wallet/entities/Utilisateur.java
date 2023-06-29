@@ -46,9 +46,9 @@ public class Utilisateur implements UserDetails{
 
     
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="user_id", nullable = false)
-    private List<Revenu> revenus;
+    // @OneToMany(cascade = CascadeType.ALL)
+    // @JoinColumn(name="user_id", nullable = false)
+    // private List<Revenu> revenus;
 
 	public Utilisateur() {
 		super();
@@ -175,14 +175,14 @@ public class Utilisateur implements UserDetails{
     
 
 
-    public List<Revenu> getRevenus() {
-        return revenus;
-    }
+    // public List<Revenu> getRevenus() {
+    //     return revenus;
+    // }
 
 
-    public void setRevenus(List<Revenu> revenus) {
-        this.revenus = revenus;
-    }
+    // public void setRevenus(List<Revenu> revenus) {
+    //     this.revenus = revenus;
+    // }
     
     
    
