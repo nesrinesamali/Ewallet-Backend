@@ -16,5 +16,7 @@ public interface DepenseRepository extends JpaRepository<Depense,Long>{
     Double getTotalDepenseAmount();
     @Query(value = "SELECT * FROM depense WHERE statut IS NOT NULL", nativeQuery = true)
     List<Depense> getPaiementsPrevus();
+
+    List<Depense> findAllByUtilisateurIdUtilisateur(Long id);
 }
 

@@ -5,6 +5,7 @@ import java.util.List;
 import com.ewallet.wallet.service.mapper.DepenseMapper;
 import com.ewallet.wallet.service.mapper.RevenuMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import com.ewallet.wallet.entities.Depense;
@@ -33,11 +34,11 @@ public class DepenseController {
         return depenseService.getDepense(id);
     }
 
-    @GetMapping("/getDepenses")
+    @GetMapping("/getOwnDepenses")
     @ResponseBody
 
-    public List<Depense> getAllDpenses() {
-        return depenseService.getAllDepenses();
+    public List<Depense> getOwnDepenses(Authentication authentication) {
+        return depenseService.getOwnDepenses(authentication);
     }
 
  

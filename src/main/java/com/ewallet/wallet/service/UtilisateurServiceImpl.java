@@ -53,4 +53,8 @@ public Utilisateur getUtilisateur(Long idUtilisateur) {
 public List<Utilisateur> getAllUtilisateurs() {
     return utilisateurRepository.findAll();
 }
+@Override
+public Double getSoldeDeCompte() {
+    return utilisateurRepository.getSoldeDeCompte();
+}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ import com.ewallet.wallet.repository.CategorieRepository;
 
 import com.ewallet.wallet.repository.UtilisateurRepository;
 
-@Component
+
 @Service
 public class DepenseServiceImpl implements DepenseService {
     @Autowired
@@ -71,8 +72,11 @@ public void deleteDepensesById(Long idDepense) {
 public DepenseDto getDepense(Long idDepense) {
     return DepenseDto.fromEntity(depenseRepository.findById(idDepense).get());}
 @Override
-public List<Depense> getAllDepenses() {
-    return depenseRepository.findAll();
+public List<Depense> getOwnDepenses(Authentication authentication) {
+    System.out.println("auth " + authentication.getName());
+    String email=authentication.getName();
+    Utilisateur utilisateur=utilisateurRepository.findByEmail(email).get();
+    return depenseRepository.findAllByUtilisateurIdUtilisateur(utilisateur.getIdUtilisateur());
 }
 
 

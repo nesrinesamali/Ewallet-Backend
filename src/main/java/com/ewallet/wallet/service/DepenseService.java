@@ -3,6 +3,8 @@ package com.ewallet.wallet.service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+
 import com.ewallet.wallet.entities.Depense;
 import com.ewallet.wallet.service.dto.DepenseDto;
 
@@ -11,7 +13,7 @@ public interface DepenseService {
  
     void deleteDepensesById(Long idDepense);
     DepenseDto  getDepense(Long idDepense);
-    List<Depense > getAllDepenses();
+    List<Depense > getOwnDepenses(Authentication authentication);
     List<Depense> findLastDepenses();
     Double getTotalDepenseAmount();
     List<Depense> getPaiementsPrevus();
