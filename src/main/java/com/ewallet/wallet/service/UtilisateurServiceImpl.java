@@ -3,10 +3,14 @@ package com.ewallet.wallet.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.ewallet.wallet.entities.Depense;
+import com.ewallet.wallet.entities.Revenu;
 import com.ewallet.wallet.entities.Utilisateur;
+import com.ewallet.wallet.repository.RevenuRepository;
 import com.ewallet.wallet.repository.UtilisateurRepository;
 import com.ewallet.wallet.service.dto.UtilisateurDto;
 import com.ewallet.wallet.service.mapper.UtilisateurMapper;
@@ -57,4 +61,5 @@ public List<Utilisateur> getAllUtilisateurs() {
 public Double getSoldeDeCompte() {
     return utilisateurRepository.getSoldeDeCompte();
 }
+
 }

@@ -6,15 +6,17 @@ import java.util.List;
 
 import com.ewallet.wallet.repository.RevenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import com.ewallet.wallet.entities.Depense;
 import com.ewallet.wallet.entities.Revenu;
 import com.ewallet.wallet.service.RevenuService;
 import com.ewallet.wallet.service.dto.RevenuDto;
  import com.ewallet.wallet.service.mapper.RevenuMapper;
 
 @RestController
-
+@RequestMapping(value = "/revenus")
 public class RevenuController {
     @Autowired
     private RevenuService revenuService;
@@ -40,13 +42,21 @@ public class RevenuController {
           return revenuService.getAllRevenus();    
     }
  
-    @PutMapping("/updateRevenu")
+ 
+
+    @GetMapping("/getOwnRevenus")
     @ResponseBody
-    public RevenuDto updateRevenu( @RequestBody RevenuDto revenuDto)
-    {
-        return revenuService.updateRevenu(revenuDto);
+    public List<Revenu> getOwnRevenus(Authentication authentication) {
+        return revenuService.getOwnRevenus(authentication);
     }
     
+    @GetMapping("/getRevenu/{id}")
+    @ResponseBody
+
+    public RevenuDto getRevenu(@PathVariable Long id) {
+        return revenuService.getRevenu(id);
+    }
+
     @DeleteMapping("/deleteRevenu/{id}")
     @ResponseBody
     public String deleteRevenuById(@PathVariable("id") Long idRevenu)
@@ -54,6 +64,7 @@ public class RevenuController {
         revenuService.deleteRevenuById(idRevenu);
         return "Deleted Successfully";
     }
+
     @GetMapping("/totalRevenu")
     public Double getTotalRevenuAmount() {
         return revenuService.getTotalRevenuAmount();
