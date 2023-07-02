@@ -17,21 +17,25 @@ import javax.persistence.Table;
 @Entity
 @Table (name="Categorie")
 public class Categorie {
+	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idCategorie;
+	
 	@Column(name="description")
 	private String description;
+	
 	@Column(name="nom")
 	private String nom;
+	
 	@Column(name="budget")
-	private Number budget;
+	private Double budget;
 
 	private Long creatorId;
 
 
 
-	public Categorie(Long idCategorie, String description, String nom, Number budget ) {
+	public Categorie(Long idCategorie, String description, String nom, Double budget ) {
 		this.idCategorie = idCategorie;
 		this.description = description;
 		this.nom = nom;
@@ -72,7 +76,7 @@ public class Categorie {
 		return budget;
 	}
 
-	public void setBudget(Number budget) {
+	public void setBudget(Double budget) {
 		this.budget = budget;
 	}
 	

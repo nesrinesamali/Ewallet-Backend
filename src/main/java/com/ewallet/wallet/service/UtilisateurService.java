@@ -12,5 +12,5 @@ public interface UtilisateurService {
     void deleteUtilisateurById(Long idUtilisateur);
     Utilisateur getUtilisateur(Long idUtilisateur);
     List<Utilisateur> getAllUtilisateurs();
-    Double getSoldeDeCompte();
+    Double getSoldeDeCompte(Long idUser);
 }

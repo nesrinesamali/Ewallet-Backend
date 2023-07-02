@@ -18,8 +18,9 @@ public class DepenseController {
 
     @Autowired
     private DepenseService depenseService;
+    
 
-
+    
 
     @PostMapping("/saveDepense")
     @ResponseBody
@@ -65,9 +66,9 @@ public class DepenseController {
         return depenseService.findLastDepenses();
     }
 
-    @GetMapping("/totalDepense")
-    public Double getTotalDepenseAmount() {
-        return depenseService.getTotalDepenseAmount();
+    @GetMapping("/totalDepense/{idUser}")
+    public Double getTotalDepenseAmount(@PathVariable("idUser")Long idUser) {
+        return depenseService.getTotalDepenseAmount(idUser);
     }
 
     @GetMapping("/getPaiementsPrevus")
@@ -75,5 +76,19 @@ public class DepenseController {
 
     public List<Depense> getPaiementsPrevus() {
         return depenseService.getPaiementsPrevus();
+    }
+    @GetMapping("/chartDepRevData")
+    List<List<Object>>  chartDepenseRevenuData(){
+        return depenseService.chartDepenseRevenuData();
+    };
+
+    @GetMapping("/notifPaiementPrevu")
+    public List<Object> notifPaiementPrevu() {
+    return depenseService.notifPaiementPrevu();
+    }
+
+    @PutMapping("/doPaiementPrevu/{id}")
+    public void doPaiementPrevu(@PathVariable("id")Long id) {
+        depenseService.doPaiementPrevu(id);
     }
 }

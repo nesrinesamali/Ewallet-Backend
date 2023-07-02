@@ -17,6 +17,6 @@ void deleteRevenuById(Long idRevenu);
 RevenuDto getRevenu(Long idRevenu);
 List<Revenu> getAllRevenus();
 List<Revenu > getOwnRevenus(Authentication authentication);
-Double getTotalRevenuAmount();
+Double getTotalRevenuAmount(Long idUser);
 }
 

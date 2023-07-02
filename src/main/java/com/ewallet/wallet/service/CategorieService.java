@@ -17,6 +17,8 @@ public interface CategorieService {
         Categorie getCategories(Long idCategorie);
         List<Categorie > getAllCategories();
         List <CategorieDepenseDto> listDepenseByCategory();
+        List<Object> listBudgetAtteint();
+
         
         
 }

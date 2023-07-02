@@ -12,8 +12,12 @@ import com.ewallet.wallet.entities.Revenu;
 // @Repository
 public interface RevenuRepository extends JpaRepository<Revenu, Long> {
 
-    @Query(value = "SELECT SUM(montant) FROM revenu", nativeQuery = true)
-    Double getTotalRevenuAmount();
+    @Query(value = "SELECT SUM(montant) FROM revenu where user_id=?", nativeQuery = true)
+    Double getTotalRevenuAmount(long idUser);
+
+    @Query(value = "SELECT montant, date FROM revenu", nativeQuery = true)
+    List<Object[]> listmontantDateRevenu();
+
 
     List<Revenu> findAllByUtilisateurIdUtilisateur(Long id);
 }

@@ -1,8 +1,13 @@
 package com.ewallet.wallet.service.dto;
 
 import java.util.Date;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.ewallet.wallet.entities.Categorie;
 import com.ewallet.wallet.entities.Depense;
+import com.ewallet.wallet.repository.CategorieRepository;
 
 import lombok.Data;
 @Data
@@ -16,6 +21,8 @@ public class DepenseDto {
     private String statut;
     private Date datePrevue; 
 
+
+
     public static Depense toEntity(DepenseDto depenseDto)
     {
         if(depenseDto == null)
@@ -28,7 +35,9 @@ public class DepenseDto {
         depense.setDate(depenseDto.getDate());
         depense.setMontant(depenseDto.getMontant());
         depense.setDescription(depenseDto.getDescription());
-        depense.setDatePrevue(null);
+        depense.setDatePrevue(depenseDto.getDatePrevue());
+        depense.setStatut(depenseDto.getStatut());
+
         return depense ; 
     }
 

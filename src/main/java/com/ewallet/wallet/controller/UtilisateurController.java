@@ -56,8 +56,8 @@ public class UtilisateurController {
         utilisateurService.deleteUtilisateurById(idUtilisateur);
         return "Deleted Successfully";
     }
-    @GetMapping("/soldeDeCompte")
-    public Double getSoldeDeCompte() {
-        return utilisateurService.getSoldeDeCompte();
+    @GetMapping("/soldeDeCompte/{idUser}")
+    public Double getSoldeDeCompte(@PathVariable Long idUser) {
+        return utilisateurService.getSoldeDeCompte(idUser);
     }
 }

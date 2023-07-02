@@ -68,6 +68,10 @@ public class CategorieController {
     public List<CategorieDepenseDto> listDepenseByCategory() {
     return categorieService.listDepenseByCategory();
     }
+    @GetMapping("/listBudgetAtteint")
+    public List<Object> listBudgetAtteint() {
+    return categorieService.listBudgetAtteint();
+    }
 }
 
 

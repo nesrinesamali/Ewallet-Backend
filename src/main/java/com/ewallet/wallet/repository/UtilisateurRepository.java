@@ -15,6 +15,6 @@ public interface UtilisateurRepository  extends JpaRepository<Utilisateur, Long>
     Optional<Utilisateur> findByEmail(String email);
     
 
-    @Query(value = "SELECT COALESCE((SELECT SUM(montant) FROM depense), 0) - COALESCE((SELECT SUM(montant) FROM revenu), 0) AS soldeDeCompte", nativeQuery = true)
-    Double getSoldeDeCompte();}
+    @Query(value = "SELECT COALESCE((SELECT SUM(montant) FROM depense where user_id=?1), 0) - COALESCE((SELECT SUM(montant) FROM revenu where user_id=?1), 0) AS soldeDeCompte", nativeQuery = true)
+    Double getSoldeDeCompte(Long idUser);}
 

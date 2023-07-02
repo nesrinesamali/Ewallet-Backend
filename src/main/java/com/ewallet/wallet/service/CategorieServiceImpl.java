@@ -72,5 +72,13 @@ public List<CategorieDepenseDto> listDepenseByCategory() {
      }
   return catDepDtos ;
     }
+
+
+
+
+@Override
+public List<Object> listBudgetAtteint() {
+    return CategorieRepository.listBudgetAtteint();
+}
 }
 

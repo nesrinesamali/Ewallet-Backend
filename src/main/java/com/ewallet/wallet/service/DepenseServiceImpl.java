@@ -1,24 +1,26 @@
 package com.ewallet.wallet.service;
 
-import java.math.BigDecimal;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.ewallet.wallet.entities.Depense;
-import com.ewallet.wallet.repository.DepenseRepository;
-import com.ewallet.wallet.service.dto.DepenseDto;
-import com.ewallet.wallet.service.mapper.DepenseMapper;
 import com.ewallet.wallet.entities.Categorie;
-
+import com.ewallet.wallet.entities.Depense;
 import com.ewallet.wallet.entities.Utilisateur;
 import com.ewallet.wallet.repository.CategorieRepository;
-
+import com.ewallet.wallet.repository.DepenseRepository;
+import com.ewallet.wallet.repository.RevenuRepository;
 import com.ewallet.wallet.repository.UtilisateurRepository;
+import com.ewallet.wallet.service.dto.DepenseDto;
+import com.ewallet.wallet.service.mapper.DepenseMapper;
 
 
 @Service
@@ -31,6 +33,11 @@ public class DepenseServiceImpl implements DepenseService {
 
     @Autowired
     CategorieRepository categorieRepository;
+
+    @Autowired
+    RevenuRepository revenuRepository;
+       
+    
 
     @Autowired
     DepenseMapper depenseMapper;
@@ -87,12 +94,58 @@ public List<Depense> findLastDepenses() {
     return depenseRepository.findLastDepenses();
 }
 @Override
-public Double getTotalDepenseAmount() {
-    return depenseRepository.getTotalDepenseAmount();
+public Double getTotalDepenseAmount(Long idUser) {
+    return depenseRepository.getTotalDepenseAmount(idUser);
 }
 
 @Override
 public List<Depense> getPaiementsPrevus() {
     return depenseRepository.getPaiementsPrevus();
 }   
+
+
+@Override
+public List<List<Object>>  chartDepenseRevenuData(){
+    List<Object[]> depenses = depenseRepository.listmontantDateDepense();
+    List<Object[]> revenus = revenuRepository.listmontantDateRevenu();
+    List<List<Object>> result= new ArrayList<>() ;
+
+    List<Object> dates = new ArrayList<>();
+    List<Object>  montantdepList = new ArrayList<>();
+    List<Object>  montantrevList = new ArrayList<>();
+
+
+    for (Object[] dep : depenses){
+        montantdepList.add( dep[0]);
+        dates.add( dep[1]);
+        montantrevList.add(0);
+    }
+    for (Object[] rev : revenus){
+        montantrevList.add( rev[0]);
+        dates.add( rev[1]);
+        montantdepList.add(0);
+    }
+    result.add(dates);
+    result.add(montantdepList);
+    result.add(montantrevList);
+
+    return result;
+
+
+}
+
+
+
+ @Transactional
+@Override
+public List<Object> notifPaiementPrevu() {
+   return depenseRepository.notifPaiementPrevu();
+}
+
+
+@Override
+public void doPaiementPrevu(Long id) {
+    depenseRepository.doPaiementPrevu(id);
+}
+
 }

@@ -61,8 +61,8 @@ public List<Revenu> getAllRevenus() {
     return revenuRepository.findAll();
 }
 @Override
-public Double getTotalRevenuAmount() {
-    return revenuRepository.getTotalRevenuAmount();
+public Double getTotalRevenuAmount(Long idUser) {
+    return revenuRepository.getTotalRevenuAmount(idUser);
 }
 @Override
 public List<Revenu> getOwnRevenus(Authentication authentication) {

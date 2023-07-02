@@ -15,7 +15,9 @@ public interface DepenseService {
     DepenseDto  getDepense(Long idDepense);
     List<Depense > getOwnDepenses(Authentication authentication);
     List<Depense> findLastDepenses();
-    Double getTotalDepenseAmount();
+    Double getTotalDepenseAmount(Long idUser);
     List<Depense> getPaiementsPrevus();
-    
+    List<List<Object>>  chartDepenseRevenuData();
+    List<Object> notifPaiementPrevu();
+    void doPaiementPrevu(Long id);
 }

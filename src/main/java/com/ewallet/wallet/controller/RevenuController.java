@@ -65,8 +65,8 @@ public class RevenuController {
         return "Deleted Successfully";
     }
 
-    @GetMapping("/totalRevenu")
-    public Double getTotalRevenuAmount() {
-        return revenuService.getTotalRevenuAmount();
+    @GetMapping("/totalRevenu/{idUser}")
+    public Double getTotalRevenuAmount(@PathVariable Long idUser) {
+        return revenuService.getTotalRevenuAmount(idUser);
     }
 }
