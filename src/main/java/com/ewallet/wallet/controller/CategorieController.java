@@ -36,8 +36,8 @@ public class CategorieController {
     @GetMapping("/getAll")
     @ResponseBody
  
-    public List<Categorie> getAllCategories() {
-        return categorieService.getAllCategories();
+    public List<Categorie> getAllCategories(Authentication authentication) {
+        return categorieService.getAllCategories(authentication);
     }
  
     @PutMapping("/updateCategories")
@@ -69,8 +69,8 @@ public class CategorieController {
     return categorieService.listDepenseByCategory();
     }
     @GetMapping("/listBudgetAtteint")
-    public List<Object> listBudgetAtteint() {
-    return categorieService.listBudgetAtteint();
+    public List<Object> listBudgetAtteint(Authentication authentication) {
+    return categorieService.listBudgetAtteint(authentication);
     }
 }
 

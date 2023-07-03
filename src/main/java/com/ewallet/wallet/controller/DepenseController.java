@@ -51,19 +51,13 @@ public class DepenseController {
 
     }
 
-    /*@GetMapping("/mesDepenses")
-    @ResponseBody
-
-    public Depense getDepenses(@PathVariable("id") Long idDepense) {
-        return depenseService.getDepenses(idDepense);
-
-    }*/
+   
 
     @GetMapping("/getLastDepenses")
     @ResponseBody
 
-    public List<Depense> findLastDepenses() {
-        return depenseService.findLastDepenses();
+    public List<Depense> findLastDepenses(Authentication authentication) {
+        return depenseService.findLastDepenses(authentication);
     }
 
     @GetMapping("/totalDepense/{idUser}")
@@ -74,17 +68,17 @@ public class DepenseController {
     @GetMapping("/getPaiementsPrevus")
     @ResponseBody
 
-    public List<Depense> getPaiementsPrevus() {
-        return depenseService.getPaiementsPrevus();
+    public List<Depense> getPaiementsPrevus(Authentication authentication) {
+        return depenseService.getPaiementsPrevus(authentication);
     }
     @GetMapping("/chartDepRevData")
-    List<List<Object>>  chartDepenseRevenuData(){
-        return depenseService.chartDepenseRevenuData();
+    List<List<Object>>  chartDepenseRevenuData(Authentication authentication){
+        return depenseService.chartDepenseRevenuData(authentication);
     };
 
     @GetMapping("/notifPaiementPrevu")
-    public List<Object> notifPaiementPrevu() {
-    return depenseService.notifPaiementPrevu();
+    public List<Object> notifPaiementPrevu(Authentication authentication) {
+    return depenseService.notifPaiementPrevu(authentication);
     }
 
     @PutMapping("/doPaiementPrevu/{id}")

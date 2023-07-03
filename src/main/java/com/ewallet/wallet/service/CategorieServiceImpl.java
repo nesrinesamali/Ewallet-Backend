@@ -38,11 +38,11 @@ public CategorieServiceImpl(CategorieMapper categorieMapper,CategorieRepository 
 
 @Override
 public Categorie saveCategories(Categorie categorie , Authentication authentication) {
-    // Utilisateur utilisateur = utilisateurRepository.findByEmail(authentication.getName()).get();
+     Utilisateur utilisateur = utilisateurRepository.findByEmail(authentication.getName()).get();
 //    Categorie categorie=categorieMapper.toEntity(categorieDto);
 //    categorie=CategorieRepository.save(categorie);
 //    return categorieMapper.toDto(categorie);
-// categorie.setCreatorId(utilisateur.getIdUtilisateur());
+ categorie.setCreatorId(utilisateur.getIdUtilisateur());
     return CategorieRepository.save(categorie);
 }
 
@@ -60,8 +60,10 @@ public void deleteCategoriesById(Long idCategorie) {
 public Categorie getCategories(Long idCategorie) {
     return CategorieRepository.findById(idCategorie).get();}
 @Override
-public List<Categorie> getAllCategories() {
-    return CategorieRepository.findAll();
+public List<Categorie> getAllCategories(Authentication authentication) {
+    String email=authentication.getName();
+    Utilisateur utilisateur=utilisateurRepository.findByEmail(email).get();
+    return CategorieRepository.findAllByCreatorId(utilisateur.getIdUtilisateur());
 }
 
 public List<CategorieDepenseDto> listDepenseByCategory() {
@@ -77,8 +79,10 @@ public List<CategorieDepenseDto> listDepenseByCategory() {
 
 
 @Override
-public List<Object> listBudgetAtteint() {
-    return CategorieRepository.listBudgetAtteint();
+public List<Object> listBudgetAtteint(Authentication authentication) {
+    String email=authentication.getName();
+    Utilisateur utilisateur=utilisateurRepository.findByEmail(email).get();
+    return CategorieRepository.listBudgetAtteint(utilisateur.getIdUtilisateur());
 }
 }
 

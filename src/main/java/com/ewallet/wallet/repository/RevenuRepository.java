@@ -15,8 +15,8 @@ public interface RevenuRepository extends JpaRepository<Revenu, Long> {
     @Query(value = "SELECT SUM(montant) FROM revenu where user_id= :idUser", nativeQuery = true)
     Double getTotalRevenuAmount(long idUser);
 
-    @Query(value = "SELECT montant, date FROM revenu", nativeQuery = true)
-    List<Object[]> listmontantDateRevenu();
+    @Query(value = "SELECT montant, date FROM revenu  where user_id= :idUser", nativeQuery = true)
+    List<Object[]> listmontantDateRevenu(long idUser);
 
 
     List<Revenu> findAllByUtilisateurIdUtilisateur(Long id);

@@ -14,10 +14,10 @@ public interface DepenseService {
     void deleteDepensesById(Long idDepense);
     DepenseDto  getDepense(Long idDepense);
     List<Depense > getOwnDepenses(Authentication authentication);
-    List<Depense> findLastDepenses();
+    List<Depense> findLastDepenses(Authentication authentication);
     Double getTotalDepenseAmount(Long idUser);
-    List<Depense> getPaiementsPrevus();
-    List<List<Object>>  chartDepenseRevenuData();
-    List<Object> notifPaiementPrevu();
+    List<Depense> getPaiementsPrevus(Authentication authentication);
+    List<List<Object>>  chartDepenseRevenuData(Authentication authentication);
+    List<Object> notifPaiementPrevu(Authentication authentication);
     void doPaiementPrevu(Long id);
 }

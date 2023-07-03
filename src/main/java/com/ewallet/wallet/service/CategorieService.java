@@ -15,9 +15,9 @@ public interface CategorieService {
         CategorieDto  updateCategories(CategorieDto categorieDto);
         void deleteCategoriesById(Long idCategorie);
         Categorie getCategories(Long idCategorie);
-        List<Categorie > getAllCategories();
+        List<Categorie > getAllCategories(Authentication authentication);
         List <CategorieDepenseDto> listDepenseByCategory();
-        List<Object> listBudgetAtteint();
+        List<Object> listBudgetAtteint(Authentication authentication);
 
         
         

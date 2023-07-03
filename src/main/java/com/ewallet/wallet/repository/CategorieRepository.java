@@ -17,10 +17,10 @@ public interface CategorieRepository extends JpaRepository<Categorie,Long>{
 
     List<Object[]> listDepenseByCategory();
    
-   @Query(value = "SELECT categorie.nom FROM categorie JOIN depense ON categorie.id_categorie = depense.category_id GROUP BY categorie.nom, categorie.budget HAVING SUM(depense.montant) >= categorie.budget; ", nativeQuery = true)
-    List<Object> listBudgetAtteint();
+    @Query(value = "SELECT c.nom FROM categorie c JOIN depense d ON c.id_categorie = d.category_id WHERE c.creator_id =:idUser GROUP BY c.nom, c.budget HAVING SUM(d.montant) >= c.budget", nativeQuery = true)
+    List<Object> listBudgetAtteint(Long idUser);
 
-
+    List<Categorie> findAllByCreatorId(Long idUser);
 
     
 }

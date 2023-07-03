@@ -80,18 +80,19 @@ public DepenseDto getDepense(Long idDepense) {
     return DepenseDto.fromEntity(depenseRepository.findById(idDepense).get());}
 @Override
 public List<Depense> getOwnDepenses(Authentication authentication) {
-    System.out.println("auth " + authentication.getName());
     String email=authentication.getName();
     Utilisateur utilisateur=utilisateurRepository.findByEmail(email).get();
-    return depenseRepository.findAllByUtilisateurIdUtilisateur(utilisateur.getIdUtilisateur());
+    return depenseRepository.findAllByIdUtilisateur(utilisateur.getIdUtilisateur());
 }
 
 
 
 
 @Override
-public List<Depense> findLastDepenses() {
-    return depenseRepository.findLastDepenses();
+public List<Depense> findLastDepenses(Authentication authentication) {
+    String email=authentication.getName();
+    Utilisateur utilisateur=utilisateurRepository.findByEmail(email).get();
+    return depenseRepository.findLastDepenses(utilisateur.getIdUtilisateur());
 }
 @Override
 public Double getTotalDepenseAmount(Long idUser) {
@@ -99,15 +100,19 @@ public Double getTotalDepenseAmount(Long idUser) {
 }
 
 @Override
-public List<Depense> getPaiementsPrevus() {
-    return depenseRepository.getPaiementsPrevus();
+public List<Depense> getPaiementsPrevus(Authentication authentication) {
+    String email=authentication.getName();
+    Utilisateur utilisateur=utilisateurRepository.findByEmail(email).get();
+    return depenseRepository.getPaiementsPrevus(utilisateur.getIdUtilisateur());
 }   
 
 
 @Override
-public List<List<Object>>  chartDepenseRevenuData(){
-    List<Object[]> depenses = depenseRepository.listmontantDateDepense();
-    List<Object[]> revenus = revenuRepository.listmontantDateRevenu();
+public List<List<Object>>  chartDepenseRevenuData(Authentication authentication){
+    String email=authentication.getName();
+    Utilisateur utilisateur=utilisateurRepository.findByEmail(email).get();
+    List<Object[]> depenses = depenseRepository.listmontantDateDepense(utilisateur.getIdUtilisateur());
+    List<Object[]> revenus = revenuRepository.listmontantDateRevenu(utilisateur.getIdUtilisateur());
     List<List<Object>> result= new ArrayList<>() ;
 
     List<Object> dates = new ArrayList<>();
@@ -138,8 +143,11 @@ public List<List<Object>>  chartDepenseRevenuData(){
 
  @Transactional
 @Override
-public List<Object> notifPaiementPrevu() {
-   return depenseRepository.notifPaiementPrevu();
+public List<Object> notifPaiementPrevu(Authentication authentication) {
+    String email=authentication.getName();
+    Utilisateur utilisateur=utilisateurRepository.findByEmail(email).get();
+   
+   return depenseRepository.notifPaiementPrevu(utilisateur.getIdUtilisateur());
 }
 
 
