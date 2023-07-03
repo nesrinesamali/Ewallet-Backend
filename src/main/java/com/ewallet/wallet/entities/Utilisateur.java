@@ -57,8 +57,9 @@ public class Utilisateur implements UserDetails{
 	}
 
    
-    public Utilisateur(String nom, String email, String motDePasse) {
+    public Utilisateur(String nom, String prenom , String email, String motDePasse) {
         this.nom = nom;
+        this.prenom = prenom ;
         this.email = email;
         this.motDePasse = motDePasse;
     }

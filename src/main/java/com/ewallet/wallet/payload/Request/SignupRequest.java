@@ -9,6 +9,10 @@ public class SignupRequest {
   private String nom;
 
   @NotBlank
+  @Size(min = 3, max = 20)
+  private String prenom;
+
+  @NotBlank
   @Size(max = 50)
   @Email
   private String email;
@@ -41,6 +45,14 @@ public class SignupRequest {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public String getPrenom() {
+    return prenom;
+  }
+
+  public void setPrenom(String prenom) {
+    this.prenom = prenom;
   }
 
  

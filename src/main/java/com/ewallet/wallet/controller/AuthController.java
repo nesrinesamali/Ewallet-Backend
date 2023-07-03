@@ -63,7 +63,7 @@ public class AuthController {
 
         return ResponseEntity.ok(new JwtResponse(jwt,
         user.getIdUtilisateur(),
-        user.getUsername(),
+        user.getNom() + " " + user.getPrenom(),
         user.getRole()
                ));
     }
@@ -83,12 +83,12 @@ public class AuthController {
         }
 
         // Create new user's account
-        Utilisateur utilisateur = new Utilisateur(signUpRequest.getNom(),
+        Utilisateur utilisateur = new Utilisateur(signUpRequest.getNom(),signUpRequest.getPrenom(),
                 signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getMotDePasse()));
 
      
-                
+        utilisateur.setRole("ROLE_USER");     
         utilisateurRepository.save(utilisateur);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));

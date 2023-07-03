@@ -17,7 +17,7 @@ public interface DepenseRepository extends JpaRepository<Depense,Long>{
     @Query(value = "SELECT * FROM depense ORDER BY date ASC LIMIT 6", nativeQuery = true)
     List<Depense> findLastDepenses();
     
-    @Query(value = "SELECT SUM(montant) FROM depense where user_id= ?1", nativeQuery = true)
+    @Query(value = "SELECT SUM(montant) FROM depense where user_id= :idUser", nativeQuery = true)
     Double getTotalDepenseAmount(Long idUser);
     
     @Query(value = "SELECT * FROM depense WHERE statut IS NOT NULL", nativeQuery = true)
