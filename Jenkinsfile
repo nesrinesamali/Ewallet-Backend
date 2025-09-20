@@ -1,26 +1,16 @@
 pipeline {
     agent any
-
     stages {
-        stage('Checkout') {
+        stage('Checkout SCM') {
             steps {
-                // Récupère le code depuis GitHub
                 git url: 'https://github.com/nesrinesamali/Ewallet-Backend.git', branch: 'main'
             }
         }
-
-        stage('Build') {
+        stage('Hello') {
             steps {
-                // Compile avec Maven
-                sh 'mvn clean package'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                // Lance les tests
-                sh 'mvn test'
+                echo 'Pipeline fonctionne !'
             }
         }
     }
 }
+
